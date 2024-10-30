@@ -47,9 +47,12 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaPeristiwa = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setName("Aplikasi Penghitung Umur"); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -126,6 +129,7 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         jPanel1.add(btnKeluar, gridBagConstraints);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridLayout());
 
         txtAreaPeristiwa.setColumns(20);
@@ -133,6 +137,9 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAreaPeristiwa);
 
         jPanel2.add(jScrollPane1);
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel4.setText("Aplikasi Penghitung Umur");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,16 +149,22 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel4)
+                .addContainerGap(371, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -188,16 +201,13 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
     peristiwaThread = new Thread(() -> { 
     try { 
         txtAreaPeristiwa.setText("Tunggu, sedang mengambil data...\n"); 
-        helper.getPeristiwaBarisPerBaris(ulangTahunBerikutnya, 
-    txtAreaPeristiwa, () -> stopFetching); 
+        helper.getPeristiwaBarisPerBaris(ulangTahunBerikutnya, txtAreaPeristiwa, () -> stopFetching); 
         if (!stopFetching) { 
-            javax.swing.SwingUtilities.invokeLater(() -> 
-    txtAreaPeristiwa.append("Selesai mengambil data peristiwa")); 
+            javax.swing.SwingUtilities.invokeLater(() -> txtAreaPeristiwa.append("Selesai mengambil data peristiwa")); 
         } 
     } catch (Exception e) { 
         if (Thread.currentThread().isInterrupted()) { 
-            javax.swing.SwingUtilities.invokeLater(() -> 
-    txtAreaPeristiwa.setText("Pengambilan data dibatalkan.\n")); 
+            javax.swing.SwingUtilities.invokeLater(() -> txtAreaPeristiwa.setText("Pengambilan data dibatalkan.\n")); 
         } 
         } 
     }); 
@@ -218,7 +228,7 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
         if (peristiwaThread != null && peristiwaThread.isAlive()) { 
             peristiwaThread.interrupt(); 
     } 
-    txtAreaPeristiwa.setText(""); 
+        txtAreaPeristiwa.setText(""); 
     }//GEN-LAST:event_dateChooserTanggalLahirPropertyChange
 
     /**
@@ -263,6 +273,7 @@ public class PenghitungUmurFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
